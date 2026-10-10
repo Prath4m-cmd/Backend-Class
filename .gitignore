@@ -1,0 +1,9 @@
+# Dependencies
+**/node_modules/
+
+# Environment variables and secrets
+**/.env
+**/.env.*
+
+# Keep example environment files if needed
+!**/.env.example
