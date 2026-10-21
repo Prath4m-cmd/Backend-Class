@@ -7,8 +7,9 @@ exports.auth= (req,res,next)=>{
     try{
         //extract jwt token
         //pending: other ways to fetch tokens
-
-        const token = req.body.token;
+        // console.log("cookies", req.cookies.token);
+        // console.log("body", req.body.token)
+        const token = req.body.token || req.cookies.token || req.header("Authorization").replace("Bearer ","");
 
         if(!token){
             res.status(401).json({
@@ -20,7 +21,7 @@ exports.auth= (req,res,next)=>{
         //verify the token 
         try{
             const payload=jwt.verify(token,process.env.JWT_SECRET);
-            console.log(payload);
+            // console.log(payload);
 
             req.user=payload;
         } catch(err){
